@@ -93,7 +93,7 @@ int dp_EditDistance(string source,string target,int len_source,int len_target){
 		}
 	}
 
-	return dp[m][n];
+	return dp[len_source][len_target];
 }
 
 
