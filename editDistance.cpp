@@ -51,7 +51,14 @@ int recusion_EditDistance(string source,string target,int len_source,int len_tar
 
 
 // ================== idea two: dynamic programming ==================
-// We can see that many subproblems are solved, again and again, for example, eD(2,2) is called three times. Since same subproblems are called again, this problem has Overlapping Subprolems property. So Edit Distance problem has both properties of a dynamic programming problem. Like other typical Dynamic Programming(DP) problems, recomputations of same subproblems can be avoided by constructing a temporary array that stores results of subproblems.
+// We can see that many subproblems are solved, again and again, 
+// for example, eD(2,2) is called three times. 
+// Since same subproblems are called again, 
+// this problem has Overlapping Subprolems property. 
+// So Edit Distance problem has both properties of a dynamic programming problem. 
+// Like other typical Dynamic Programming(DP) problems, 
+// recomputations of same subproblems can be avoided 
+// by constructing a temporary array that stores results of subproblems.
 
 
 int dp_EditDistance(string source,string target,int len_source,int len_target){
@@ -62,7 +69,7 @@ int dp_EditDistance(string source,string target,int len_source,int len_target){
 	for(i=0;i<=len_source;i++){
 		for(j=0;j<=len_target;j++){
 			// If first string is empty, only option is to
-            // isnert all characters of second string
+            // insert all characters of second string
 			if(i == 0)
 				dp[i][j] = j;
 
@@ -79,7 +86,7 @@ int dp_EditDistance(string source,string target,int len_source,int len_target){
 			else 				// b1 INSERT
 				dp[i][j] = 1 + min(dp[i][j-1],
 								// b2 REPLACE
-							   dp[i][j],
+							   dp[i-1][j-1],
 							    // b3 DELETE
 							   dp[i-1][j]
 					          );
@@ -95,10 +102,10 @@ int main(){
 	cout<<"input source and target respectively: "<<endl;
 	cin>>source>>target;
 
-	//solution one
+	//idea one
 	// cout<<"the distance between "<<source<<" and "<<target<<" is "<<recusion_EditDistance(source,target,source.length(),target.length())<<endl;
 
-	//solution two
+	//idea two
 	cout<<"the distance between "<<source<<" and "<<target<<" is "<<dp_EditDistance(source,target,source.length(),target.length())<<endl;
 }
 
