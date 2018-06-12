@@ -77,12 +77,12 @@ int dp_EditDistance(string source,string target,int len_source,int len_target){
 				dp[i][j] = dp[i-1][j-1];
 
 			else 				// b1 INSERT
-				return 1 + min(dp[i][j-1],
+				dp[i][j] = 1 + min(dp[i][j-1],
 								// b2 REPLACE
 							   dp[i][j],
 							    // b3 DELETE
 							   dp[i-1][j]
-					          )
+					          );
 		}
 	}
 
