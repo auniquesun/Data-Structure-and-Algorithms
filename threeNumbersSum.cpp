@@ -29,11 +29,13 @@ using namespace std;
 
 
 vector< vector<int> > threeSum(vector<int>& nums) {
-    //clock_t start = clock();      // 测试时使用
+    clock_t start = clock();
 
-    //cout<<"start time: "<<float(start)/CLOCKS_PER_SEC<<endl;  
+    //cout<<"start time: "<<float(start)/CLOCKS_PER_SEC<<endl;
 
-    //cout<<"start time: "<<float(start)<<endl;
+    cout<<"start time: "<<float(start)<<endl;
+
+    set< vector<int> > s;	// 准备插入满足条件的 triplet
 
     vector< vector<int> > result;     // 定义一个最终要返回的结果，嵌套向量，相当于二维向量
 
@@ -53,14 +55,15 @@ vector< vector<int> > threeSum(vector<int>& nums) {
 
         for(;left<right;){
 
-          if(nums[i] + nums[left] + nums[right] == 0){    // nums[right] >= nums[left], 和为零表明有正有负
+            if(nums[i] + nums[left] + nums[right] == 0){    // nums[right] >= nums[left], 和为零表明有正有负
 
                 triplet.push_back(nums[i]);
 
                 triplet.push_back(nums[left]);
 
                 triplet.push_back(nums[right]);
-                result.push_back(triplet);
+                s.insert(triplet);	// 集合中插入元素，不会有重复的元素，
+                					// 这样后面就免去了去重这一步，时间效率进一步提高，通过了leetcode评判
 
                 triplet.clear();
 
@@ -76,39 +79,46 @@ vector< vector<int> > threeSum(vector<int>& nums) {
 
             else
 
-                right--;
+                right--;          
 
         }
-   }
-
-
+    }
 
     //sort(result.begin(), result.end());
 
     //result.erase( unique( result.begin(), result.end() ), result.end() );   // 移除 result 中的重复元素
 
-    // 移除 result 中的重复元素，实验结果证明，这种方法速度更快
-    set< vector<int> > s( result.begin(), result.end() );       
-    result.assign( s.begin(), s.end() );
+//    set< vector<int> > s( result.begin(), result.end() );
 
-    //clock_t end = clock();            // 测试时使用
+    result.assign( s.begin(), s.end() );	// 把 s 中的元素放入 result	
+
+     //set<int> s;
+
+     //for( i = 0; i < result.size(); ++i ) s.insert( result[i] );
+
+	//result.assign( s.begin(), s.end() );
+
+
+
+    clock_t end = clock();
 
     //cout<<"end time: "<<float(end)/CLOCKS_PER_SEC<<endl;
 
-    //cout<<"end time: "<<float(end)<<endl;
+    cout<<"end time: "<<float(end)<<endl;
 
-    //cout<<"time cost is "<<float(end-start)/CLOCKS_PER_SEC*1000<<"ms"<<endl;      // 测试时使用
+    cout<<"time cost is "<<float(end-start)/CLOCKS_PER_SEC*1000<<"ms"<<endl;
 
-//     for(int i=0;i<result.size();i++){          // 测试时使用
+    for(int i=0;i<result.size();i++){
 
-//         vector<int> row = result[i];
-//         for(int j=0;j<row.size();j++)
+        vector<int> row = result[i];
 
-//             cout << row[j] << " ";
+        for(int j=0;j<row.size();j++)
 
-//         cout<<endl;
+            cout << row[j] << " ";
 
-//     }
+        cout<<endl;
+
+    }
 
     return result;
 }
@@ -120,5 +130,4 @@ int main(){
     vector<int> nums(arr, arr + n);
 
     threeSum(nums);
-
 }
