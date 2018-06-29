@@ -50,5 +50,5 @@ bool increasingTriplet(vector<int>& nums) {
 
 int main(){
 	vector<int> nums = {16,464,4,64,6,464,67};
-	cout<<increasingTriplet(nums)<<endl;
+	cout<<"found increasing triplet: "<<increasingTriplet(nums)<<endl;
 }
