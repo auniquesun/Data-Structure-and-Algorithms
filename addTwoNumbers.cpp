@@ -157,13 +157,17 @@ public:
        //  			while(p2){
        //  				ListNode *node = NULL;	// 存放指向新建节点的指针，要定义在循环内部
 
-       //  				bit_sum = (p2->val + carry) % 10;
-       //  				node = new ListNode(bit_sum);
-
-       //  				if(bit_sum >= 10)
-	      //   				carry = 1;
-	      //   			else
-	      //   				carry = 0;
+       //  				// 	bit_sum = (p1->val + carry) % 10;
+    			
+	    			// 	if(bit_sum >= 10){
+	        				// carry = 1;
+	        				// 	node = new ListNode(bit_sum % 10);
+	        		// }
+	       //  				
+	       //  			else{
+	       //  				carry = 0;
+	        				// node = new ListNode(bit_sum);
+	        			// }
 	      //   			// 把节点插到末尾
 	      //   			p->next = node;
        //  				p = p->next;
@@ -176,11 +180,16 @@ public:
        //  			ListNode *node = NULL;	// 存放指向新建节点的指针，要定义在循环内部
 
     			// 	bit_sum = (p1->val + carry) % 10;
-    			// 	node = new ListNode(bit_sum);
-    			// 	if(bit_sum >= 10)
-       //  				carry = 1;
-       //  			else
+    			
+    			// 	if(bit_sum >= 10){
+        				// carry = 1;
+        				// 	node = new ListNode(bit_sum % 10);
+        		// }
+       //  				
+       //  			else{
        //  				carry = 0;
+        				// node = new ListNode(bit_sum);
+        			// }
        //  			// 把节点插到末尾
        //  			p->next = node;
     			// 	p = p->next;
