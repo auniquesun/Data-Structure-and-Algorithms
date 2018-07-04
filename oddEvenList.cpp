@@ -63,7 +63,7 @@ public:
         	// ①当原链表长度为偶数时，odd为空且even不为空
         	if(!odd && even)
         		p->next = head_even;
-        	// ①当原链表长度为奇数时，odd不为空且指向最后一个节点，even为空
+        	// ②当原链表长度为奇数时，odd不为空且指向最后一个节点，even为空
         	else{
         		p = odd;
         		p->next = head_even;
