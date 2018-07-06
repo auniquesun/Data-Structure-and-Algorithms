@@ -1,11 +1,33 @@
 #include<iostream>
 #include <vector>
 #include <queue>
+#include <stack>
 
 using namespace std;
 
+// =================== problem ==================
+// 给定一个二叉树，返回其节点值的层次遍历
+// 例如：
+// 给定二叉树 [3,9,20,null,null,15,7],
+
+//     3
+//    / \
+//   9  20
+//     /  \
+//    15   7
+// 层次遍历结果如下：
+
+// [
+//   [3],
+//   [9，20],
+//   [15,7]
+// ]
+
 // ================== idea ==================
-// 层次遍历，肯定要用到队列
+// 层次遍历，肯定要用到队列，
+// 返回结果是一个二维向量，第一维是树的层次，第二维是每层从左到右的值，
+// 所以关键一步是记录扫描到了哪一层 layer，同时要记录上一层 layer_back
+// 这样就能判断什么时候该插入一层完整的向量 level
 
 struct TreeNode {
   int val;
@@ -20,7 +42,7 @@ public:
         vector< vector<int> > result;	// 存放返回结果
         if(root != NULL){
 
-	        vector<int> level;	// 存放每层的元素
+	        vector<int> level;	// 存放每层的元素	     
 	        
 	        TreeNode *cur = root;
 	        queue<TreeNode*> node_pointer_queue;	        
@@ -33,6 +55,7 @@ public:
 	        	layer_back = layer;
 
 	        	level.push_back(cur->val);
+
 	        	if(cur->left)
 	        		node_pointer_queue.push(cur->left);
 	        	if(cur->right)
