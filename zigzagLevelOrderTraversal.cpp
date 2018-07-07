@@ -65,7 +65,7 @@ public:
 			if(cur->right)
 				left2right.push(cur->right);
 
-	        bool flag = true;
+	    	bool flag = true;
 			bool sign = true;
 
 	        while(flag){	        	
