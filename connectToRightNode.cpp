@@ -40,11 +40,11 @@ using namespace std;
 // 4->5->6->7 -> NULL
 
 // ================== idea ==================
-对于每层节点，next指针要指向它的右侧节点（如果有的话）
-这个题相当于层次遍历的同时，把当前节点next指针要指向它的右侧节点
-但是关键的一点是“要知道当前扫描到了哪一层”，否则一直指向右侧节点会引起跨层的问题
-problem 中说明（3）解决了这一问题，具体来说：
-	对于一颗完全二叉树，第i层的节点个数不会超过 pow(2,(i-1))
+// 对于每层节点，next指针要指向它的右侧节点（如果有的话）
+// 这个题相当于层次遍历的同时，把当前节点next指针要指向它的右侧节点
+// 但是关键的一点是“要知道当前扫描到了哪一层”，否则一直指向右侧节点会引起跨层的问题
+// problem 中说明（3）解决了这一问题，具体来说：
+// 	对于一颗完全二叉树，第i层的节点个数不会超过 pow(2,(i-1))
 
 struct TreeLinkNode {
   int val;
@@ -66,12 +66,13 @@ public:
 	        queue<TreeLinkNode*> node_pointer_queue;	        
 
 	        int cur_layer = 1;	// 当前层
-	        int num_cur_layer_nodes = 1;	// 当前层节点数，满足 num_cur_layer_nodes = pow(2, cur_layer - 1)	        
 
 	        bool flag = true;
 	        while(flag){	        	
 
-	        	if(level.size() < pow(2, cur_layer - 1))	// 表明 cur_layer 层节点个数未满，可以继续添加
+	        	int num_cur_layer_nodes = pow(2, cur_layer - 1);	// 当前层节点数，满足 num_cur_layer_nodes = pow(2, cur_layer - 1)	        
+
+	        	if(level.size() < num_cur_layer_nodes)	// 表明 cur_layer 层节点个数未满，可以继续添加
 	        		level.push_back(cur);
 	        	else{	// 表明 cur_layer 层节点个数已满，需要处理该层next指针指向问题
 	        		for(int i=0;i<level.size()-1;i++)
