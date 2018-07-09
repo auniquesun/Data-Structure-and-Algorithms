@@ -1,7 +1,7 @@
 #include<iostream>
 #include <vector>
 #include <queue>
-#include <math>
+#include <cmath>
 
 using namespace std;
 
