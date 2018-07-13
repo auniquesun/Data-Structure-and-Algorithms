@@ -50,7 +50,7 @@ public:
     }
     
     void combination(string digits, int cur_index, int digits_len, char word[], vector<string> &result, int &count){
-    	if(cur_index == digits_len){	// wcur_index 与 digits_len 相等时，表明一种字母组合处理完毕，即找到了一种字母组合
+    	if(cur_index == digits_len){	// cur_index 与 digits_len 相等时，表明一种字母组合处理完毕，即找到了一种字母组合
     		string s(word); // 把字符数组转换为string类型
             result.push_back(s);
             cout << count << ": " << word << endl;        	// 测试时使用    
