@@ -66,16 +66,18 @@ public:
 int main(){
 	vector<int> nums;
 	int item;
-	while(cin>>item){
+	while(cin>>item && item != -1){
 		nums.push_back(item);
 	}
 
 	Solution *solu = new Solution();
 	vector< vector<int> > result = solu->permute(nums);
 	
-	for(int i=0;i<result.size();i++)
-		cout << result[i] << " ";
-	cout << endl;
+	for(int i=0;i<result.size();i++){
+		for(int j=0;j<result[i].size();j++)
+			cout << result[i][j] << " ";
+		cout << endl;
+	}
 
 	return 0;
 }
