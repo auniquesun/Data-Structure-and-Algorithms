@@ -69,6 +69,26 @@ public:
 int main(int argc, char const *argv[])
 {
 	/* code */
+    vector<int> nums;
 
+    int num;
+    bool flag = true;
+    while(flag && cin>>num){
+        if(num == -1)
+            flag = false;
+        else
+            nums.push_back(num);
+    }
+
+    Solution *solu = new Solution();
+    solu->sortColors(nums);
+
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        /* code */
+        cout << nums[i] << " ";
+    }
+    cout << endl;
+    
 	return 0;
 }
