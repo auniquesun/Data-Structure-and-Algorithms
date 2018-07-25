@@ -51,7 +51,7 @@ int main(int argc, char const *argv[])
 	Solution *solu = new Solution();
     int Kth = solu->findKthLargest(nums,4);
     
-	cout << result[i] << "Kth largest item: " << Kth << endl;    
+	cout << "Kth largest item: " << Kth << endl;    
 
 	return 0;
 }
