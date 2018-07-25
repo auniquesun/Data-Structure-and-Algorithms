@@ -1,6 +1,5 @@
 #include<iostream>
 #include <vector>
-// #include <set>	因为数组元素不需要去重，所以没用上
 #include <algorithm>
 
 using namespace std;
