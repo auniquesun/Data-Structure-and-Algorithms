@@ -62,6 +62,14 @@ public:
 				int rowId = i;
 				int left = 0, right = num_inner_loop - 1;	// 注意这里 右边界是 num_inner_loop - 1，而不是 num_inner_loop
 				
+				if(sign == -1 && matrix[rowId][right] < target){	// 每行是升序排列的，如果行末元素小于target，
+																	// 表明本行不可能存在target，跳过此行
+					continue;
+				}
+
+				else if(sign == 1 && matrix[right][rowId] < target){	// 同理
+					continue;
+				}
 
 				bool flag = binary_search(matrix, rowId, left, right, target, sign, index);	// index是引用传递
 																							// index的作用是：在行中没有搜索到 target时，确定从哪一列搜索，记录列号
