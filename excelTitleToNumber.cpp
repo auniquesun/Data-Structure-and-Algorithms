@@ -79,7 +79,7 @@ int main(int argc, char const *argv[])
 	cin >> s;
 
 	Solution *solu = new Solution();
-	cout << s << " corresponding COLUMN number " << solu->titleToNumber(s) << endl;
+	cout << s << " corresponding title number " << solu->titleToNumber(s) << endl;
 
 	return 0;
 }
