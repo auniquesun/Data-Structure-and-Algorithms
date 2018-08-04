@@ -42,12 +42,12 @@ public:
 
 int main()
 {
-        /* code */
-        double x;
-        int n;
-        cin >> x >> n;
-        Solution *solu = new Solution();
-		cout << "pow(" << x <<"," << n <<") = " << solu->myPow(x, n) << endl;
-        
-        return 0;
+    /* code */
+    double x;
+    int n;
+    cin >> x >> n;
+    Solution *solu = new Solution();
+	cout << "pow(" << x <<"," << n <<") = " << solu->myPow(x, n) << endl;
+    
+    return 0;
 }
