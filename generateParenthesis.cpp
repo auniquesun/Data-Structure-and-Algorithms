@@ -26,6 +26,9 @@
 class Solution {
 public:
     char str[100];  // 只需要一个公共的char数组，后一种情况覆盖前一种情况即可
+    Solution(){
+	   	str[2*n] = '\0';    // 设置char数组结束符; 在这里只需设置一次，递归里面 字符数组str 转换成字符串时不用担心没有设置结束符导致出错的问题
+    }
     vector<string> generateParenthesis(int n) {
     	vector<string> result;
         printParenthesis(n, result);
@@ -45,7 +48,6 @@ public:
 	     
 	    if(close == n) 	// 右括号个数等于n，表示生成了一个满足条件的括号
 	    {
-	    	str[2*n] = '\0';    // 设置char数组结束符
 	        string s(str);		// 把一个char数组转换成字符串简单有效的方法
 	        result.push_back(s);	// 关于向量插入 元素的方法有很多，这里选择push_back，更多方法参考 vector 官方文档
 	    }
