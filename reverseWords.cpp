@@ -17,7 +17,6 @@ public:
     string reverseWords(string s) {
         string res = "";
         string substr = "";
-        cout << "s.length: " << s.length() << endl;
         for(int i=0;i<s.length();i++){            
             if(s[i]!=' ')
                 substr += s[i];
@@ -26,8 +25,6 @@ public:
                 res += substr + ' ';
                 substr = "";
             }
-            cout << "i: " << i << endl;
-            cout << substr << endl;
         }
         // 如果 s 这个字符串非空，并且它的最后一个字符不是空格
         // 需要把最后一个单词逆转，并加入res
