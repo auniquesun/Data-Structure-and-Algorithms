@@ -26,19 +26,8 @@ using namespace std;
     idea:
     一般不用遍历所有情况的方法，一是容易漏掉情况，而是时间复杂度太高
     这个题和 numIslands.cpp 的解法相似，递归可以有效避免漏掉情况
-
-    我对leetcode这个题的测试用例有异议，leetcode给出的这组测试用例：
-        输入：
-        [["A","B","C","E"],["S","F","E","S"],["A","D","E","E"]]
-        "ABCESEEEFS"
-        输出：
-        false
-        预期：
-        true
-    我的理由：
-    （1）ABCESEEEFS 出现了4个‘E’，根据题目要求，同一单元格内字母不允许重复使用，而board里只有3个‘E’
-    （2）相邻单元格是那些水平相邻或垂直相邻的单元格，按照此原则也找不到 ABCESEEEFS
 */
+
 class Solution {
 public:
     bool exist(vector< vector<char> >& board, string word) {
