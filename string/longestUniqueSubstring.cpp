@@ -40,7 +40,7 @@ vector<int> longestUniqueSubstring(vector<char> string){
 			if(prev_index == -1 || (i - prev_index) > cur_len)
 				cur_len++;
 			else{
-				if(cur_len>max_len){
+				if(cur_len>=max_len){
 					max_len = cur_len;
 					max_index = i;
 				}
