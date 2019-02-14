@@ -26,6 +26,7 @@ idea:
 
 class Solution {
 public:
+    // 方案一
     int maxProfit(vector<int>& prices) {
         if(prices.size()<2)
             return 0;
@@ -55,6 +56,27 @@ public:
             }
 
             return max_profit;
+        }
+    }
+    // 方案二：对方案一进行改进，方案一额外开辟了prices_min和interval两个数组
+    // 实际上不需要开辟这两个数组就能解决问题
+    int maxProfitAdvanced(vector<int>& prices){
+        if(prices.size()<2)
+                        return 0;
+        else{
+            int max_profit = 0; //实时跟踪最大利润
+            int min_price = prices[0];  //实时跟踪最小价格
+            // 并没有开辟额外的数组空间，只用了两个遍量
+                        
+            for(int i=1; i<prices.size(); i++){
+                if(prices[i] < min_price)
+                    min_price = prices[i];
+                if(prices[i] - min_price > max_profit)
+                    max_profit = prices[i] - min_price;
+                                                            
+            }
+            return max_profit;
+                                                        
         }
     }
 };
