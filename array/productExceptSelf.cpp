@@ -29,6 +29,7 @@ idea:
 
 class Solution {
 public:
+    // 方案一
     vector<int> productExceptSelf(vector<int>& nums) {
         vector<int> res;
         // nums为空或者只有1个元素，res都应该为空
@@ -51,6 +52,30 @@ public:
         for(int i=0;i<nums.size();i++){
             int product = left[i] * right[i];
             res.push_back(product);
+        }
+
+        return res;
+    }
+    // 方案二，方案一中开辟了  left，right两个数组，占用了额外的空间
+    // 方案二对其改进，不用开辟这两个数组就能解决问题
+    vector<int> productExceptSelfAdvanced(vector<int>& nums) {
+        vector<int> res;
+        // nums为空或者只有1个元素，res都应该为空
+        if(nums.size() == 0 || nums.size() == 1)
+            return res;        
+        
+        // 初始化，res为空向量，把res的值全部填为1
+        int val = 1;
+        for(int i=0; i<nums.size(); i++)
+            res.push_back(val);
+
+        for(int i=1;i<=nums.size()-1;i++)
+            res[i] = nums[i-1] * res[i-1];
+
+        int tmp = 1;
+        for(int i=nums.size()-2; i>=0; i--){
+            tmp *= nums[i+1];
+            res[i] *= tmp;
         }
 
         return res;
