@@ -17,7 +17,9 @@ struct TreeNode
 	TreeNode *right;
 	TreeNode(int x): val(x), left(NULL), right(NULL) {}
 };
+// 方案一，其中 静态变量 prev 有些不好理解
 void convertBST2SortedDLL(TreeNode *root, TreeNode **head){	//其实就是对中序遍历作了修改
+                                            // head 接收的是指针的地址，目的是拿到它修改后的值
 	if(root == NULL)
 		return;
 
@@ -25,15 +27,36 @@ void convertBST2SortedDLL(TreeNode *root, TreeNode **head){	//其实就是对中
 
 	convertBST2SortedDLL(root->left, head);
 
-	if(prev == NULL)
+	if(prev == NULL){
 		*head = root;
+        //cout << (*head)->val << endl;
+    }
 	else{
 		root->left = prev;
 		prev->right = root;
+        //cout << root->val << endl;
+        cout << prev->val << endl;
 	}
 	prev = root;
 
 	convertBST2SortedDLL(root->right, head);
+}
+// 方案二，[ 剑指offer上的，有bug ]     不设置静态变量 prev，代码更容易理解
+void BST2SortedDLL(TreeNode *root, TreeNode **lastNodeInList){
+    if(root == NULL)
+        return;
+
+    TreeNode *curNodeInList = root;
+    if(curNodeInList->left != NULL)
+        BST2SortedDLL(curNodeInList->left, lastNodeInList);
+
+    curNodeInList->left = *lastNodeInList; 
+    if(lastNodeInList != NULL)
+        (*lastNodeInList)->right = curNodeInList;
+    *lastNodeInList = curNodeInList;
+
+    if(curNodeInList->right != NULL)
+        BST2SortedDLL(curNodeInList->right, lastNodeInList);
 }
 
 void printList(TreeNode *node) 
@@ -59,7 +82,8 @@ int main()
   
     // Convert to DLL 
     TreeNode *head = NULL; 
-    convertBST2SortedDLL(root, &head); 
+    //convertBST2SortedDLL(root, &head); 
+    BST2SortedDLL(root, &head);
   
     // Print the converted list 
     printList(head); 
