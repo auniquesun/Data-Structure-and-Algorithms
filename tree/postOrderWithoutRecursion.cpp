@@ -4,6 +4,15 @@
 
 using namespace std;
 
+/*
+ * problem: 二叉树后序非递归遍历
+ *
+ * idea: 后序遍历，很重要的一点就是当左子树遍历完毕时，如何返回根节点, 从根节点再到右子树
+ *          用一个哈希表存储每个节点的父节点
+ *          时间复杂负、空间复杂度均为 O(n)
+ *
+ * */
+
 struct TreeNode {
   int val;
   TreeNode *left;
