@@ -45,5 +45,5 @@ int rand7()
         result = m * (rand_m() - 1) + rand_m();
     } while (result > t);
     
-    return result;
+    return result%7 + 1;
 }
