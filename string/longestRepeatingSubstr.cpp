@@ -37,7 +37,7 @@ string LRS(string str){
         if(max_length > 0){
             char *result = new char [max_length];
             for(int i=0; i<max_length; i++)
-                result[i] = *suffix[max_index+i];
+                result[i] = suffix[max_index][i];   //这种赋值方式更容易理解, 第max_index个字符串的前max_length个元素
             return result;
         }
 
