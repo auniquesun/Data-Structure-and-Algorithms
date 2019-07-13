@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <vector>
+#include <iostream>
 
 /*
 problem: 给定一个字符串，按从小到大的顺序，求它的下一个排列
@@ -38,7 +39,17 @@ class Solution{
 
         // Reverse suffix
         reverse(i, nums.end());
+
+        for(int i=0; i<nums.size(); i++)
+            cout << nums[i] << " ";
+        cout << endl;
         return;
     }
     
 };
+
+int main(){
+    vector<int> nums = {2,1,4,3,5,0};
+    Solution *solu = new Solution();
+    solu->nextPermutation(nums);
+}
