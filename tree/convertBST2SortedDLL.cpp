@@ -17,15 +17,16 @@ struct TreeNode
 	TreeNode *right;
 	TreeNode(int x): val(x), left(NULL), right(NULL) {}
 };
-// 方案一，其中 静态变量 prev 有些不好理解
-void convertBST2SortedDLL(TreeNode *root, TreeNode **head){	//其实就是对中序遍历作了修改
+// 方案一，其中 静态变量 prev 有些不好理解，我的解决方案不用静态变量了，用指针引用代替
+void convertBST2SortedDLL(TreeNode *root, TreeNode **head, TreeNode *&prev){	//其实就是对中序遍历作了修改
                                             // head 接收的是指针的地址，目的是拿到它修改后的值
 	if(root == NULL)
 		return;
 
-	static TreeNode *prev = NULL;
+    // 原来 prev 是设置成静态变量的
+	//static TreeNode *prev = NULL;
 
-	convertBST2SortedDLL(root->left, head);
+	convertBST2SortedDLL(root->left, head, prev);
 
 	if(prev == NULL){
 		*head = root;
@@ -39,54 +40,47 @@ void convertBST2SortedDLL(TreeNode *root, TreeNode **head){	//其实就是对中
 	}
 	prev = root;
 
-	convertBST2SortedDLL(root->right, head);
-}
-// 方案二，[ 剑指offer上的，有bug ]     不设置静态变量 prev，代码更容易理解
-void BST2SortedDLL(TreeNode *root, TreeNode **lastNodeInList){
-    if(root == NULL)
-        return;
-
-    TreeNode *curNodeInList = root;
-    if(curNodeInList->left != NULL)
-        BST2SortedDLL(curNodeInList->left, lastNodeInList);
-
-    curNodeInList->left = *lastNodeInList; 
-    if(lastNodeInList != NULL)
-        (*lastNodeInList)->right = curNodeInList;
-    *lastNodeInList = curNodeInList;
-
-    if(curNodeInList->right != NULL)
-        BST2SortedDLL(curNodeInList->right, lastNodeInList);
+	convertBST2SortedDLL(root->right, head, prev);
 }
 
-void printList(TreeNode *node) 
-{ 
-    while (node!=NULL) 
-    { 
-        cout << node->val << " "; 
-        node = node->right; 
-    } 
+void printList(TreeNode *node)
+{
+    TreeNode *reverse_node = NULL;
+    // 从左到右打印
+    while (node!=NULL)
+    {
+        cout << node->val << " ";
+        reverse_node = node;
+        node = node->right;
+    }
+    cout << endl;
+    // 从右到左打印
+    while (reverse_node!=NULL)
+    {
+        cout << reverse_node->val << " ";
+        reverse_node = reverse_node->left;
+    }
     cout << endl;
 }
 
 /* Driver program to test above functions*/
-int main() 
-{ 
-    // Let us create the tree shown in above diagram 
-    TreeNode *root    = new TreeNode(10); 
-    root->left        = new TreeNode(8); 
-    root->right       = new TreeNode(36); 
-    root->left->left  = new TreeNode(5); 
-    root->left->right = new TreeNode(9); 
-    root->right->left = new TreeNode(15); 
-  
-    // Convert to DLL 
-    TreeNode *head = NULL; 
-    //convertBST2SortedDLL(root, &head); 
-    BST2SortedDLL(root, &head);
-  
-    // Print the converted list 
-    printList(head); 
-  
-    return 0; 
-} 
+int main()
+{
+    // Let us create the tree shown in above diagram
+    TreeNode *root    = new TreeNode(10);
+    root->left        = new TreeNode(8);
+    root->right       = new TreeNode(36);
+    root->left->left  = new TreeNode(5);
+    root->left->right = new TreeNode(9);
+    root->right->left = new TreeNode(15);
+
+    // Convert to DLL
+    TreeNode *head = NULL;
+    TreeNode *prev = NULL;
+    convertBST2SortedDLL(root, &head, prev);
+
+    // Print the converted list
+    printList(head);
+
+    return 0;
+}
