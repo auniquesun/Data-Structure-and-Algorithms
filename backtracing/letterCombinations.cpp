@@ -87,8 +87,8 @@ int main(){
 	cin>>digits;
 
 	Solution *solu = new Solution();
-	vector<string> result = solu->numIslands(digits);
-	
+	vector<string> result = solu->letterCombinations(digits);
+
 	for(int i=0;i<result.size();i++)
 		cout << result[i] << " ";
 	cout << endl;
