@@ -2,6 +2,12 @@
 #include<algorithm>
 #include<string>
 
+/*
+   这个题，就是腾讯春招提前批的题，和 最长公共子串 不一样的地方是，
+   这个题需要在 字符串内部 找出这样的子串
+   例子： “banana” 这个词，“an”是重复子串，“ana”是重复子串，“a” “n”是重复子串，
+    但是最长的显然是 “ana”
+   */
 using namespace std;
 int getNumOfCommonChar(char *s1, char *s2){
     int num = 0;
@@ -16,12 +22,13 @@ int getNumOfCommonChar(char *s1, char *s2){
 string LRS(string str){
 	if(str.length() > 0){
 		char **suffix = new char* [str.length()];	//suffix是指向指针数组的指针
+                                                    //建立这个二维数组很关键
 		for(int i=0; i<str.length(); i++){
-			suffix[i] = &str[i];	//把str【i】的地址赋给 
+			suffix[i] = &str[i];	//把str【i】的地址赋给
 			cout << suffix[i] << endl;
 		}
 
-		sort(suffix, suffix + str.length());
+		sort(suffix, suffix + str.length());    // 排序操作很关键
 
 		int max_length = 0, max_index = 0;
 		for(int i=0; i<str.length()-1; i++){
