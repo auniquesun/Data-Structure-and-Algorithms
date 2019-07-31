@@ -22,14 +22,14 @@ class Solution{
         // Find non-increasing suffix
         if (nums.empty())
             return;
-        vector<int>::iterator i = nums.end() - 1;
+        vector<int>::iterator i = nums.end() - 1;   // 定位到最后一个数
         while (i > nums.begin() && *(i - 1) >= *i)
             --i;
         if (i == nums.begin()){
             sort(nums.begin(), nums.end());
             return;
         }
-            
+
 
         // Find successor to pivot
         vector<int>::iterator j = nums.end() - 1;
@@ -45,7 +45,7 @@ class Solution{
         cout << endl;
         return;
     }
-    
+
 };
 
 int main(){
