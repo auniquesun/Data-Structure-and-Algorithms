@@ -23,7 +23,7 @@ bool isBalanced(TreeNode *root, int *depth){
     cout << "left: " << left << ", right: " << right << endl;
     if(isBalanced(root->left, &left) && isBalanced(root->right, &right)){
         int diff = left - right;
-        if(diff <=1 || diff >=-1){
+        if(diff <=1 && diff >=-1){
             *depth = 1+(left<right?right:left);
             return true;
         }
