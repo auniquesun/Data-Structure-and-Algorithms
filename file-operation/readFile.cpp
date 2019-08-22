@@ -25,7 +25,7 @@ vector<string> readFile2(string filename){
     string line;
 
     ifstream infile(filename);
-    while(getline(infile, line)){   // getline
+    while(getline(infile, line)){   // getline in "istream"
         if(line.length())
             lines.push_back(line);
     }
