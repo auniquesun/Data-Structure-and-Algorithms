@@ -16,6 +16,8 @@ vector<string> readFile1(string filename){
         if(line.length())
             lines.push_back(line);
     }
+    // add operation to close ifstream
+    infile.close();
 
     return lines;
 }
@@ -29,6 +31,8 @@ vector<string> readFile2(string filename){
         if(line.length())
             lines.push_back(line);
     }
+    // add operation to close ifstream
+    infile.close();
 
     return lines;
 }
