@@ -4,6 +4,12 @@
 
 using namespace std;
 
+/*
+1. 没什么难的，就是用计算机模拟乘法，两个数乘完再和第三个数乘
+2. 注意错位与补零操作
+3. 用到双向队列，push_front,push_end灵活选取
+*/
+
 deque<int> getFactorialResult(int n){
     deque<int> result;
     deque<int> product;
